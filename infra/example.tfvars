@@ -1,1 +1,1 @@
-digitalocean_token = "seu_token_digitalocean"
+analytics_iac_droplet = "seu_token_digitalocean"

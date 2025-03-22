@@ -32,6 +32,8 @@ source ./.venv/bin/activate
 pip install ansible
 ```
 
+- Criação dos arquivos prod.auto.tfvars e inventory.ini como os exemplos em [example.tfvars](/infra/example.tfvars) e [example.ini](/infra/example.ini).
+
 
 ## Funcionamento
 
