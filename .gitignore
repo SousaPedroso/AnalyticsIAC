@@ -1,3 +1,9 @@
+# terraform
 infra/prod.auto.tfvars
+infra/.terraform/
+infra/.terraform.lock.hcl
+*.tfstate*
+
+# ansible
 *.venv
 infra/inventory.ini
