@@ -13,4 +13,4 @@ sudo apt update &&& sudo apt install terraform
 
 ## Funcionamento
 
-Esse projeto cria máquina virtual na digital ocean, fique a vontade para utilizar o [free tier](https://www.digitalocean.com/open-source/credits-for-projects) e testar o projeto.
+Esse projeto cria máquina virtual na digital ocean, fique a vontade para utilizar o [free tier](https://cloud.digitalocean.com/registrations/new) e testar o projeto.
