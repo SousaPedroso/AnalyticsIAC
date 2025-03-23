@@ -35,6 +35,24 @@ pip install ansible
 - Criação dos arquivos prod.auto.tfvars e inventory.ini como os exemplos em [example.tfvars](/infra/example.tfvars) e [example.ini](/infra/example.ini).
 
 
+## Deploy
+
+Aqui vai ser separado em duas etapas em vista de ser necessário pegar o IP público do [Droplet](https://cloud.digitalocean.com/droplets).
+```bash
+cd infra
+terraform init
+terraform apply
+cd ..
+source ./.venv/bin/activate
+cd infra
+# destruir os serviços caso não seja mais necessário
+# terraform destroy
+```
+
+```
+ansible-playbook -i inventory.ini install_requirements.yaml
+```
+
 ## Funcionamento
 
 Esse projeto cria máquina virtual na digital ocean, fique a vontade para utilizar o [free tier](https://cloud.digitalocean.com/registrations/new) e testar o projeto.
