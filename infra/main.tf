@@ -11,6 +11,12 @@ variable "analytics_iac_droplet" {
   description = "Token for DigitalOcean API"
 }
 
+variable "private_key" {
+  type = string
+  description = "Path to the private key"
+}
+
+
 provider "digitalocean" {
     token = var.analytics_iac_droplet
 }
@@ -25,5 +31,14 @@ resource "digitalocean_droplet" "spotify_analytics" {
   region  = "nyc2"
   size    = "s-1vcpu-1gb"
   ssh_keys = [data.digitalocean_ssh_key.digital_oceans.id]
+
+  connection {
+    host = self.ipv4_address
+    user = "root"
+    type = "ssh"
+    private_key = file(var.private_key)
+    timeout = "2m"
+  }
+
   tags = ["analytics", "spotify"]
 }
