@@ -15,6 +15,12 @@
           - software-properties-common
           - ca-certificates
           - curl
+          - unzip # unzip repositories
+          # Requirements for python env inside spotify-analytics
+          - python3-pip
+          - virtualenv
+          - python3-venv
+          - python3-setuptools
         state: latest
         update_cache: true
 
