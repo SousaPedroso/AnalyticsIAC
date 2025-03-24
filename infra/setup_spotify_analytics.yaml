@@ -1,0 +1,34 @@
+- name: Setup Spotify Analytics
+  hosts: spotify-analytics
+  become: true
+  tasks:
+    - name: Create application directory
+      ansible.builtin.file:
+        path: /srv/app/
+        state: directory
+        mode: '0755'
+
+    - name: Pull repository
+      ansible.builtin.unarchive:
+        src: https://github.com/ftupas/dbt-spotify-analytics/archive/master.zip
+        dest: /srv/app/
+        remote_src: yes
+
+    - name: Create virtual env
+      ansible.builtin.shell:
+        cmd: python3 -m venv /srv/app/dbt-spotify-analytics-master/venv
+
+    - name: Install requirements
+      ansible.builtin.shell:
+        cmd: ls -lha && make build
+        chdir: /srv/app/dbt-spotify-analytics-master
+
+    - name: Setup Environment variables
+      ansible.builtin.copy:
+        content: |
+          USERNAME = "{{ spotify_username }}"
+          CLIENT_ID = "{{ client_id }}"
+          CLIENT_SECRET = "{{ client_secret }}"
+          REDIRECT_URI = "{{ redirect_uri }}"
+        dest: /srv/app/dbt-spotify-analytics-master/config.py
+        mode: '0644'
