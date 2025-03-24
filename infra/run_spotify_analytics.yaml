@@ -1,0 +1,22 @@
+- name: Run Spotify Analytics
+  hosts: spotify-analytics
+  become: true
+  tasks:
+    - name: Activate virtualenv
+      ansible.builtin.shell:
+        chdir: /srv/app/dbt-spotify-analytics-master
+        cmd: . venv/bin/activate
+
+    - name: Data Ingestion
+      ansible.builtin.shell:
+        chdir: /srv/app/dbt-spotify-analytics-master
+        cmd: make run
+
+    - name: Tear down existing services
+      community.docker.docker_compose_v2:
+        project_src: /srv/app/dbt-spotify-analytics-master
+        state: absent
+
+    - name: Transform Data
+      community.docker.docker_compose_v2:
+        project_src: /srv/app/dbt-spotify-analytics-master
