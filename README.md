@@ -37,7 +37,8 @@ pip install ansible
 
 ## Deploy
 
-Aqui vai ser separado em duas etapas em vista de ser necessário pegar o IP público do [Droplet](https://cloud.digitalocean.com/droplets).
+Aqui vai ser separado em duas etapas em vista de ser necessário pegar o IP público do [Droplet](https://cloud.digitalocean.com/droplets). Além disso, crie um app no [spotify](https://developer.spotify.com/dashboard/login), e coloque suas credenciais
+no *inventory.ini*.
 ```bash
 cd infra
 terraform init
