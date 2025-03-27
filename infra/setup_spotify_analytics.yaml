@@ -30,5 +30,5 @@
           CLIENT_ID = "{{ client_id }}"
           CLIENT_SECRET = "{{ client_secret }}"
           REDIRECT_URI = "{{ redirect_uri }}"
-        dest: /srv/app/dbt-spotify-analytics-master/config.py
+        dest: /srv/app/dbt-spotify-analytics-master/app/config.py
         mode: '0644'
