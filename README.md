@@ -53,6 +53,7 @@ cd infra
 ```
 ansible-playbook -i inventory.ini install_requirements.yaml
 ansible-playbook -i inventory.ini setup_spotify_analytics.yaml
+ansible-playbook -i inventory.ini run_spotify_analytics.yaml
 ```
 
 ## Funcionamento
