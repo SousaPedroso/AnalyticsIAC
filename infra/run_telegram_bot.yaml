@@ -33,6 +33,7 @@
           GRAFANA_ADMIN_PASSWORD = "{{ grafana_admin_pass }}"
           ADMIN_HOST = "{{ admin_host }}"
           ADMIN_PORT = "{{ admin_port }}"
+          AMPLITUDE_API_KEY = "{{ amplitude_api_key }}"
         dest: /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78/.env
         mode: '0644'
 
