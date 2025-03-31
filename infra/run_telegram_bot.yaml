@@ -1,0 +1,48 @@
+- name: Setup Telegran
+  hosts: telegram-bot
+  become: true
+  tasks:
+    - name: Create application directory
+      ansible.builtin.file:
+        path: /srv/app/
+        state: directory
+        mode: '0755'
+
+    - name: Pull repository
+      ansible.builtin.unarchive:
+        src: https://github.com/donBarbos/telegram-bot-template/archive/506710f1c4d94dbc268c899b7cf3cb78d2f90e78.zip
+        dest: /srv/app/
+        remote_src: yes
+
+    - name: Setup Environment variables
+      ansible.builtin.copy:
+        content: |
+          BOT_TOKEN = "{{ bot_token }}"
+          DB_HOST = "{{ db_host }}"
+          DB_PORT = "{{ db_port }}"
+          DB_USER = "{{ db_user }}"
+          DB_PASS = "{{ db_pass }}"
+          DB_NAME = "{{ db_name }}"
+          REDIS_HOST = "{{ redis_host }}"
+          REDIS_PORT = "{{ redis_port }}"
+          REDIS_PASS = "{{ redis_pass }}"
+          WEBHOOK_PORT = "{{ webhook_port }}"
+          PROMETHEUS_PORT = "{{ prometheus_port }}"
+          GRAFANA_PORT = "{{ grafana_port }}"
+          GRAFANA_ADMIN_USER = "{{ grafana_admin_user }}"
+          GRAFANA_ADMIN_PASSWORD = "{{ grafana_admin_pass }}"
+          ADMIN_HOST = "{{ admin_host }}"
+          ADMIN_PORT = "{{ admin_port }}"
+          AMPLITUDE_API_KEY = "{{ amplitude_api_key }}"
+        dest: /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78/.env
+        mode: '0644'
+
+    - name: Tear down existing services
+      community.docker.docker_compose_v2:
+        project_src: /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78/
+        state: absent
+
+    - name: Instantiate bot
+      community.docker.docker_compose_v2:
+        project_src: /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78/
+        state: present
