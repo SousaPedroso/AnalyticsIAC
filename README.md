@@ -38,7 +38,7 @@ pip install ansible
 ## Deploy
 
 Aqui vai ser separado em duas etapas em vista de ser necessário pegar o IP público do [Droplet](https://cloud.digitalocean.com/droplets). Além disso, crie um app no [spotify](https://developer.spotify.com/dashboard/login), e coloque suas credenciais
-no *inventory.ini*. Para o Telegram, envie uma mensagem para [@BotFather](https://t.me/botfather) para registrar o bot e receber o token de autenticação, para depois colocar essa credencial no *inventory.ini*.
+no *inventory.ini*. Para o Telegram, envie uma mensagem para [@BotFather](https://t.me/botfather) para registrar o bot e receber o token de autenticação, para depois colocar essa credencial no *inventory.ini*. Também crie uma conta em [Amplitude](https://amplitude.com/get-started), vá em [configurações](http://analytics.amplitude.com/amp-dev-docs/settings/projects) e copie a chave para seu projeto e coloque essa credencial no *inventory.ini*.
 ```bash
 cd infra
 terraform init
