@@ -42,3 +42,21 @@ resource "digitalocean_droplet" "spotify_analytics" {
 
   tags = ["analytics", "spotify"]
 }
+
+resource "digitalocean_droplet" "telegram_bot" {
+  image   = "ubuntu-20-04-x64"
+  name    = "telegram-bot"
+  region  = "nyc2"
+  size    = "s-1vcpu-1gb"
+  ssh_keys = [data.digitalocean_ssh_key.digital_oceans.id]
+
+  connection {
+    host = self.ipv4_address
+    user = "root"
+    type = "ssh"
+    private_key = file(var.private_key)
+    timeout = "2m"
+  }
+
+  tags = ["analytics", "telegram"]
+}
