@@ -14,6 +14,11 @@
         dest: /srv/app/
         remote_src: yes
 
+    - name: Rename Directory
+      ansible.builtin.command: mv /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78 /srv/app/telegram-bot-template
+      args:
+        chdir: /srv/app/
+
     - name: Setup Environment variables
       ansible.builtin.copy:
         content: |
@@ -34,15 +39,15 @@
           ADMIN_HOST = "{{ admin_host }}"
           ADMIN_PORT = "{{ admin_port }}"
           AMPLITUDE_API_KEY = "{{ amplitude_api_key }}"
-        dest: /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78/.env
+        dest: /srv/app/telegram-bot-template/.env
         mode: '0644'
 
     - name: Tear down existing services
       community.docker.docker_compose_v2:
-        project_src: /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78/
+        project_src: /srv/app/telegram-bot-template/
         state: absent
 
     - name: Instantiate bot
       community.docker.docker_compose_v2:
-        project_src: /srv/app/telegram-bot-template-506710f1c4d94dbc268c899b7cf3cb78d2f90e78/
+        project_src: /srv/app/telegram-bot-template/
         state: present
