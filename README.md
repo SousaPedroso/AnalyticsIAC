@@ -60,3 +60,7 @@ ansible-playbook -i inventory.ini run_telegram_bot.yaml
 ## Funcionamento
 
 Esse projeto cria máquina virtual na digital ocean, fique a vontade para utilizar o [free tier](https://cloud.digitalocean.com/registrations/new) e testar o projeto.
+
+A ideia principal do projeto é integrar o template do telegram com os dados do spotify para poder enviar mensagens a respeito de músicas, playlists, entre outras informações através do bot. Os principais pontos que não permitiram finalizar esta integração no tempo planejado para o final do projeto estão na geração do token do spotify de forma automatizada (não foi possível a implementação feita [aqui](https://github.com/SousaPedroso/dbt-spotify-analytics)) que exige um [mais complexidade](https://stackoverflow.com/questions/54720587/how-to-change-the-network-of-a-running-docker-container) e; mesmo prosseguindo de forma manual, há o erro para obtenção de algumas informações da [API do spotify](https://community.spotify.com/t5/Spotify-for-Developers/v1-me-following-getting-403s-all-of-a-sudden/td-p/6252827).
+
+No entanto, fique à vontade para continuar esse projeto e integrar os dois repositórios base desse projeto: [dbt-spotify](https://github.com/ftupas/dbt-spotify-analytics) e [telegram-bot](https://github.com/donBarbos/telegram-bot-template).
